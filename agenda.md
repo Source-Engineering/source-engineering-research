@@ -14,17 +14,17 @@ This document is a living list. Open questions are added as the discipline recog
 ### Pillar 2 -- Contextual Signature Mapping
 
 - **Q2.1.** How does a Source Engineering system surface per-segment calibration drift to the operator without leaking segment identity to the user? Current state: per-segment drift is recognised as a problem; the privacy-preserving surface is not.
-- **Q2.2.** What is the contract between the context-engineering layer (which sets the parameters) and the COTS layer (which surfaces them to the user)? Current state: the discipline assumes the parameters are surfaced; the contract that governs what "surfaced" means is not specified.
+- **Q2.2.** ~~What is the contract between the context-engineering layer (which sets the parameters) and the COTS layer (which surfaces them to the user)?~~ Closed by RFC-0004; see Closed questions below.
 
 ### Pillar 3 -- Chain of Evidence
 
-- **Q3.1.** What is the minimum evidence-relationship vocabulary for a COTS to be inspectable? Current state: the discipline assumes "every decision links to supporting evidence" without specifying the relationship types (supports, contradicts, contextualises, etc.).
+- **Q3.1.** What is the minimum evidence-relationship vocabulary for a COTS to be inspectable? Current state: the floor vocabulary (`supports`, `contradicts`, `contextualises`, `constrains`, `set-by`) is specified by RFC-0004 (closed at floor level, see below). Open remainder: extension of the vocabulary beyond the floor (new relationship types) requires a CR.
 - **Q3.2.** How does a Source Engineering system handle the case where a decision's evidence is itself a model-generated artefact (a retrieval-augmented generation answer, an agent's tool call, a model's intermediate reasoning)? Current state: the discipline assumes the evidence is inspectable; recursive evidence chains are not addressed.
 
 ### Pillar 4 -- Explainability Anchoring
 
 - **Q4.1.** How does a Source Engineering system surface the reasoning trace to the end user, not just the operator? Current state: traces are operator-facing (LangSmith, Langfuse, etc.); user-facing traces are a different product category.
-- **Q4.2.** What is the user-facing visualisation of a COTS? Current state: the discipline assumes the COTS is inspectable; the visualisation is deferred.
+- **Q4.2.** ~~What is the user-facing visualisation of a COTS?~~ Closed by RFC-0004 (Reasoning Roadmap + Context Graph); see Closed questions below.
 
 ### Pillar 5 -- Human Validation Points
 
@@ -61,7 +61,11 @@ This document is a living list. Open questions are added as the discipline recog
 
 ## Closed questions
 
-(none yet; the first protocol is `protocols/legal-summarization-evaluation.md`)
+- **Q2.2** (context/COTS surfacing contract) -- closed by [RFC-0004](https://github.com/Source-Engineering/source-engineering-governance/blob/main/RFC/0004-context-graph-surfacing.md) (accepted 2026-11-02). "Surfaced" means the Context Graph is producible from the COTS alone, user-side; verified by conformance cases TC-CG-01..03 in `Source-Engineering/source-engineering-conformance`.
+- **Q4.2** (user-facing COTS visualisation) -- closed by RFC-0004. Two complementary renderings: the Reasoning Roadmap (`se-trace visualize`) and the Context Graph (`se-trace context-graph`), both in `Source-Engineering/source-engineering-tools`.
+- **Q3.1** (minimum evidence-relationship vocabulary, floor level) -- closed by RFC-0004. The floor vocabulary is `supports`, `contradicts`, `contextualises`, `constrains`, `set-by`. Extension beyond the floor remains open and requires a CR.
+
+The first experimental protocol remains `protocols/legal-summarization-evaluation.md`.
 
 ## Related documents
 
