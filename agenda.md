@@ -50,20 +50,22 @@ This document is a living list. Open questions are added as the discipline recog
 
 ### Layer 4 -- Audit Trail
 
-- **Q-L4.1.** What is the persistence contract for the audit trail? Current state: the discipline assumes the audit trail is persistent; the retention policy, the access model, and the tamper-evidence guarantees are not specified.
-- **Q-L4.2.** How does the audit trail support re-runs against historical COTS bundles? Current state: re-runs are a defined operation; the historical-COTS access pattern is not specified.
+- **Q-L4.1.** What is the persistence contract for the audit trail? Current state: partially closed by RFC-0005 (JSONL append-only store, domain-declared retention, storage interface); tamper-evidence beyond the structural check remains open.
+- **Q-L4.2.** How does the audit trail support re-runs against historical COTS bundles? Current state: rerun linkage (`rerun_of`) is normative per RFC-0005 (TC-L4-04) and replayable via `Layer4.replay` / `se-trace audit`; the historical-COTS access pattern remains open.
 
 ## Foundational questions (cross-pillar)
 
 - **Q-F.1.** What is the relationship between the COTS and the model's chain-of-thought? Are they the same, distinct, or partially overlapping? Current state: the discipline explicitly distinguishes them (the manifesto's third principle) but the formal relationship is not specified.
 - **Q-F.2.** What is the relationship between the COTS and the model's training data? Can the COTS reference the training data, or only the inputs to the call? Current state: the discipline assumes only the call's inputs; the deeper training-data traceability is out of scope for the COTS but is an open question for the discipline.
-- **Q-F.3.** How does the discipline handle the case where a Source Engineering system's COTS is itself wrong (the system claims to carry a COTS that does not actually reflect the model's reasoning)? Current state: the discipline assumes the COTS is faithful; the verification mechanism is not specified.
+- **Q-F.3.** How does the discipline handle the case where a Source Engineering system's COTS is itself wrong (the system claims to carry a COTS that does not actually reflect the model's reasoning)? Current state: partially addressed -- RFC-0005 (Layer 4) makes the audit trail the verification substrate (replay any decision from COTS + trail; TC-L4-01..05 check trail integrity); COTS-content faithfulness remains open as Q-L4.3.
 
 ## Closed questions
 
 - **Q2.2** (context/COTS surfacing contract) -- closed by [RFC-0004](https://github.com/Source-Engineering/source-engineering-governance/blob/main/RFC/0004-context-graph-surfacing.md) (accepted 2026-11-02). "Surfaced" means the Context Graph is producible from the COTS alone, user-side; verified by conformance cases TC-CG-01..03 in `Source-Engineering/source-engineering-conformance`.
 - **Q4.2** (user-facing COTS visualisation) -- closed by RFC-0004. Two complementary renderings: the Reasoning Roadmap (`se-trace visualize`) and the Context Graph (`se-trace context-graph`), both in `Source-Engineering/source-engineering-tools`.
 - **Q3.1** (minimum evidence-relationship vocabulary, floor level) -- closed by RFC-0004. The floor vocabulary is `supports`, `contradicts`, `contextualises`, `constrains`, `set-by`. Extension beyond the floor remains open and requires a CR.
+
+- **Q-L4.3** (new, opened by RFC-0005) -- what is the minimum audit-trail protocol for verifying COTS faithfulness (Q-F.3)? RFC-0005 floors the trail; the verification protocol against it is the next step.
 
 The first experimental protocol remains `protocols/legal-summarization-evaluation.md`.
 
