@@ -66,6 +66,7 @@ This document is a living list. Open questions are added as the discipline recog
 - **Q3.1** (minimum evidence-relationship vocabulary, floor level) -- closed by RFC-0004. The floor vocabulary is `supports`, `contradicts`, `contextualises`, `constrains`, `set-by`. Extension beyond the floor remains open and requires a CR.
 
 - **Q-L4.3** (new, opened by RFC-0005) -- what is the minimum audit-trail protocol for verifying COTS faithfulness (Q-F.3)? RFC-0005 floors the trail; the verification protocol against it is the next step.
+- **Q-CD.1** (refined by the 2026-finance-transaction-routing case study, closing Slice 6) -- is "judgment separate from evidence" the same claim in every high-stakes domain? Answer so far: yes at the framing level (legal and finance both hold it), but each domain needs its own tertiary measure (wrong-route catch rate in finance; expansion rate in legal) and its own guardrail vocabulary. Open remainder: does a third domain change the framing-level answer?
 
 The first experimental protocol remains `protocols/legal-summarization-evaluation.md`.
 
